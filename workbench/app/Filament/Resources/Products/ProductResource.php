@@ -16,6 +16,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use UnitEnum;
@@ -67,6 +68,7 @@ class ProductResource extends Resource
             ->filters([
                 SelectFilter::make('category')->options(static::categories()),
             ])
+            ->filtersLayout(request()->boolean('collapsible-filters') ? FiltersLayout::AboveContentCollapsible : FiltersLayout::Dropdown)
             ->recordActions([
                 EditAction::make()->slideOver(),
                 DeleteAction::make(),

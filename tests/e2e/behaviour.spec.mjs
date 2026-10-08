@@ -84,3 +84,18 @@ for (const path of ['/admin', '/admin/orders', '/admin/orders/create', '/admin/o
         await expect(page.locator('.fi-main')).toBeVisible()
     })
 }
+
+test('collapsible filters share the toolbar row with search', async ({ page }) => {
+    await appearance(page)
+    await visit(page, '/admin/products?collapsible-filters=1')
+
+    const trigger = page.locator('.fi-ta-filters-trigger-action-ctn .fi-icon-btn')
+    const search = page.locator('.fi-ta-search-field input')
+    const [triggerBox, searchBox] = [await trigger.boundingBox(), await search.boundingBox()]
+
+    expect(Math.abs(triggerBox.y + triggerBox.height / 2 - (searchBox.y + searchBox.height / 2))).toBeLessThan(3)
+    expect(triggerBox.x).toBeGreaterThan(searchBox.x)
+
+    await trigger.click()
+    await expect(page.locator('.fi-ta-filters-above-content-ctn.fi-open .fi-ta-filters')).toBeVisible()
+})

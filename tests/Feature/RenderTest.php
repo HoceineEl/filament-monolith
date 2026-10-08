@@ -149,3 +149,19 @@ it('keeps search key bindings the panel already set', function (): void {
 
     expect($panel->getGlobalSearchKeyBindings())->toBe(['ctrl+shift+s']);
 });
+
+it('renders the mobile brand only when the panel has no topbar', function (): void {
+    $user = user();
+
+    $this->actingAs($user)
+        ->get(dashboardUrl())
+        ->assertOk()
+        ->assertDontSee('mn-mobile-brand', false);
+
+    filament()->getPanel('admin')->topbar(false);
+
+    $this->actingAs($user)
+        ->get(dashboardUrl())
+        ->assertOk()
+        ->assertSee('mn-mobile-brand', false);
+});

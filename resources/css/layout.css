@@ -418,3 +418,48 @@ html[data-mn-sidebar='classic'] .fi-topbar {
         display: none;
     }
 }
+
+.mn-mobile-brand {
+    display: none;
+}
+
+@media (max-width: 1023px) {
+    .fi-body:not(.fi-body-has-topbar) .fi-layout-sidebar-toggle-btn-ctn {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        height: var(--topbar-height);
+        padding-inline: calc(var(--mn-page-px) - 0.5rem);
+        background-color: color-mix(in oklab, var(--mn-canvas) 88%, transparent);
+        backdrop-filter: saturate(1.6) blur(10px);
+        box-shadow: inset 0 -1px 0 var(--mn-border);
+    }
+
+    .fi-body:not(.fi-body-has-topbar) .mn-mobile-brand {
+        position: fixed;
+        top: 0;
+        inset-inline-start: calc(var(--mn-page-px) + 2.25rem);
+        z-index: 21;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        height: var(--topbar-height);
+        max-width: calc(100vw - var(--mn-page-px) * 2 - 2.5rem);
+
+        & .fi-logo {
+            height: 1.375rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: var(--mn-text);
+        }
+
+        & .mn-brand-monogram {
+            width: 1.75rem;
+            height: 1.75rem;
+            font-size: 0.75rem;
+        }
+    }
+}

@@ -601,6 +601,8 @@ class MonolithTheme implements Plugin
             $panel->renderHook(PanelsRenderHook::TOPBAR_LOGO_AFTER, fn (): View => view('monolith::topbar-breadcrumbs'));
         }
 
+        $panel->renderHook(PanelsRenderHook::LAYOUT_START, fn (): ?View => filament()->hasTopbar() ? null : view('monolith::mobile-brand'));
+
         if ($this->hasBrandMonogram) {
             $panel
                 ->renderHook(PanelsRenderHook::SIDEBAR_LOGO_BEFORE, fn (): View => view('monolith::brand-monogram'))
