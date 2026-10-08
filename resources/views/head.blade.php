@@ -264,10 +264,17 @@
 
         apply()
 
-        root.setAttribute('data-mn-sb', readStored('isOpenDesktop', true) ? 'open' : 'collapsed')
+        const syncSidebar = () => root.setAttribute('data-mn-sb', readStored('isOpenDesktop', true) ? 'open' : 'collapsed')
+
+        syncSidebar()
 
         document.addEventListener('alpine:initialized', () => {
             requestAnimationFrame(() => requestAnimationFrame(() => root.setAttribute('data-mn-ready', '')))
+
+            window.Alpine.effect(() => {
+                window.Alpine.store('sidebar')?.isOpenDesktop
+                queueMicrotask(syncSidebar)
+            })
         })
 
         const heightsKey = 'monolith:heights'
@@ -361,8 +368,15 @@
         document.addEventListener('DOMContentLoaded', scheduleOverflowCheck)
         window.addEventListener('resize', scheduleOverflowCheck)
 
+        document.addEventListener('livewire:navigating', ({ detail }) => detail.onSwap?.(() => {
+            syncSidebar()
+            root.setAttribute('data-mn-ready', '')
+        }))
+
         document.addEventListener('livewire:navigated', () => {
             apply()
+            syncSidebar()
+            root.setAttribute('data-mn-ready', '')
             scheduleOverflowCheck()
         })
 
