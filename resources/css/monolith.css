@@ -1,0 +1,12 @@
+@layer properties, theme, base, components, monolith, utilities;
+
+@import './tokens.css';
+@import './palettes.css';
+
+@import './layout.css' layer(monolith);
+@import './navigation.css' layer(monolith);
+@import './controls.css' layer(monolith);
+@import './surfaces.css' layer(monolith);
+@import './features.css' layer(monolith);
+@import './customizer.css' layer(monolith);
+@import './motion.css' layer(monolith);

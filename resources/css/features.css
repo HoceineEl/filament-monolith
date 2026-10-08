@@ -1,0 +1,107 @@
+@media (min-width: 1024px) {
+    html[data-mn-connected='on']:is([data-mn-sidebar='classic'], [data-mn-sidebar='inset']) {
+        --mn-tab-r: var(--mn-radius-lg);
+
+        & :is(.fi-body:not(.fi-body-has-sidebar-collapsible-on-desktop) .fi-main-sidebar, .fi-main-sidebar.fi-sidebar-open, html:not([data-mn-ready])[data-mn-sb='open'] .fi-main-sidebar) {
+            & .fi-sidebar-nav {
+                padding-inline-end: 0;
+                scrollbar-width: none;
+            }
+
+            & .fi-sidebar-group-btn,
+            & .fi-sidebar-item:not(.fi-active) > .fi-sidebar-item-btn,
+            & .fi-sidebar-group-items > .fi-sidebar-item.fi-active > .fi-sidebar-sub-group-items {
+                margin-inline-end: 0.75rem;
+            }
+
+            & .fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+                position: relative;
+                background-color: var(--mn-tab-bg);
+                border-start-end-radius: 0;
+                border-end-end-radius: 0;
+                box-shadow: none;
+                padding-inline-end: calc(0.5rem + var(--mn-tab-ext));
+
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    inset-inline-end: 0;
+                    width: var(--mn-tab-r);
+                    height: var(--mn-tab-r);
+                    pointer-events: none;
+                }
+
+                &::before {
+                    bottom: 100%;
+                    background: radial-gradient(circle at 0 0, transparent calc(var(--mn-tab-r) - 0.5px), var(--mn-tab-bg) var(--mn-tab-r));
+                }
+
+                &::after {
+                    top: 100%;
+                    background: radial-gradient(circle at 0 100%, transparent calc(var(--mn-tab-r) - 0.5px), var(--mn-tab-bg) var(--mn-tab-r));
+                }
+            }
+        }
+    }
+
+    [dir='rtl'][data-mn-connected='on'] .fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+        &::before {
+            background: radial-gradient(circle at 100% 0, transparent calc(var(--mn-tab-r) - 0.5px), var(--mn-tab-bg) var(--mn-tab-r)) !important;
+        }
+
+        &::after {
+            background: radial-gradient(circle at 100% 100%, transparent calc(var(--mn-tab-r) - 0.5px), var(--mn-tab-bg) var(--mn-tab-r)) !important;
+        }
+    }
+
+    html[data-mn-connected='on'][data-mn-sidebar='classic'] {
+        --mn-tab-bg: var(--mn-canvas);
+        --mn-tab-ext: 0.75rem;
+    }
+
+    html[data-mn-connected='on'][data-mn-sidebar='inset'] {
+        --mn-tab-bg: var(--mn-bg);
+        --mn-tab-ext: calc(0.75rem + var(--mn-gutter) + 1px);
+
+        & :is(.fi-body:not(.fi-body-has-sidebar-collapsible-on-desktop) .fi-main-sidebar, .fi-main-sidebar.fi-sidebar-open, html:not([data-mn-ready])[data-mn-sb='open'] .fi-main-sidebar) {
+            width: calc(var(--mn-sb-w) + var(--mn-gutter) + 1px);
+        }
+    }
+}
+
+html[data-mn-sticky='on'] .fi-ta-content-ctn.mn-overflowing .fi-ta-table {
+    & > thead > tr > .fi-ta-actions-header-cell:last-child,
+    & > tbody > tr > .fi-ta-cell:last-child:has(.fi-ta-actions),
+    & > tbody > tr.fi-ta-summary-header-row > :last-child,
+    & > tbody > tr.fi-ta-summary-row > :last-child {
+        position: sticky;
+        inset-inline-end: 0;
+        z-index: 2;
+        background-color: var(--mn-card);
+        padding-inline-start: 1rem;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset-block: 0;
+            inset-inline-start: 0;
+            width: 1px;
+            background-color: var(--mn-border);
+            box-shadow: -6px 0 12px -6px rgb(var(--mn-shadow-color) / 0.12);
+            pointer-events: none;
+        }
+    }
+
+    & > thead > tr > .fi-ta-actions-header-cell:last-child {
+        background-color: color-mix(in oklab, var(--mn-muted) 45%, var(--mn-card));
+    }
+
+    & > tbody > tr.fi-clickable:hover > .fi-ta-cell:last-child:has(.fi-ta-actions) {
+        background-color: color-mix(in oklab, var(--mn-muted) 55%, var(--mn-card));
+    }
+}
+
+html[data-mn-sticky='on'] .fi-ta-content-ctn.mn-overflowing .fi-ta-table > tbody > tr > .fi-ta-cell:last-child:has(.fi-ta-actions):has([aria-expanded='true']) {
+    z-index: 5;
+}

@@ -1,0 +1,7 @@
+{
+    "inter": { "familyName": "Inter", "category": "sans-serif", "variants": { "latin": true } },
+    "space-grotesk": { "familyName": "Space Grotesk", "category": "sans-serif", "variants": { "latin": true } },
+    "space-mono": { "familyName": "Space Mono", "category": "monospace", "variants": { "latin": true } },
+    "lora": { "familyName": "Lora", "category": "serif", "variants": { "latin": true } },
+    "noto-kufi-arabic": { "familyName": "Noto Kufi Arabic", "category": "sans-serif", "variants": { "arabic": true, "latin": true } }
+}

@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+/shots
+composer.lock
+.phpunit.cache
+.phpunit.result.cache
+.DS_Store
+/test-results
+/playwright-report

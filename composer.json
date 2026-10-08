@@ -1,0 +1,75 @@
+{
+    "name": "hoceineel/filament-monolith",
+    "description": "A shadcn-inspired theme for Filament panels: floating and inset sidebars, density modes, accent and base palettes, any font, RTL, and a live appearance customizer.",
+    "keywords": [
+        "hoceineel",
+        "laravel",
+        "filament",
+        "filament-plugin",
+        "filament-theme",
+        "shadcn",
+        "theme",
+        "rtl"
+    ],
+    "homepage": "https://github.com/HoceineEL/filament-monolith",
+    "support": {
+        "issues": "https://github.com/HoceineEL/filament-monolith/issues",
+        "source": "https://github.com/HoceineEL/filament-monolith",
+        "security": "https://github.com/HoceineEL/filament-monolith/security/policy"
+    },
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hoceine El Idrissi",
+            "email": "contact@hoceine.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "filament/filament": "^4.0|^5.0",
+        "illuminate/contracts": "^11.28|^12.0|^13.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.24",
+        "orchestra/testbench": "^9.0|^10.0|^11.0",
+        "pestphp/pest": "^3.0|^4.0",
+        "pestphp/pest-plugin-laravel": "^3.0|^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "HoceineEl\\Monolith\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HoceineEl\\Monolith\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse --memory-limit=1G",
+        "test": "vendor/bin/pest",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HoceineEl\\Monolith\\MonolithServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
